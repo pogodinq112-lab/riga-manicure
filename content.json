@@ -22,22 +22,21 @@
     "includes": { "todo": "Что входит: материалы, модели, сертификат, поддержка после курса" }
   },
 
-  "_works_info": "name: toņa nosaukums katalogā; swatch: laka krāsa (hex), ar to pārkrāsojas lapa.",
   "works": [
-    { "src": "img/hero-polka.webp", "w": 1050, "h": 1400, "name": "Chocolate Polka", "swatch": "#3b2219", "alt": "Длинные шоколадные стилеты в белый горошек" },
-    { "src": "img/cherry-glitter.webp", "w": 825, "h": 1100, "name": "Cherry Glitter", "swatch": "#7a1426", "alt": "Вишнёвый маникюр с серебряным глиттером на миндальных ногтях" },
-    { "src": "img/pink-jelly.webp", "w": 825, "h": 1100, "name": "Pink Jelly", "swatch": "#ff3d8b", "alt": "Прозрачно-розовые желейные стилеты с объёмным сердцем" },
-    { "src": "img/gold-stiletto.webp", "w": 825, "h": 1100, "name": "Golden Hour", "swatch": "#c99159", "alt": "Золотые стилеты с белой росписью" },
-    { "src": "img/blue-aura.webp", "w": 825, "h": 1100, "name": "Blue Aura", "swatch": "#2149b8", "alt": "Синий аура-маникюр на коротких квадратных ногтях" },
-    { "src": "img/red-silver-stiletto.webp", "w": 825, "h": 1100, "name": "Red Chrome", "swatch": "#9c1b2e", "alt": "Красно-серебряные стилеты с хромовой росписью" },
-    { "src": "img/pink-leopard.webp", "w": 825, "h": 1100, "name": "Pink Leopard", "swatch": "#f0279a", "alt": "Розовый леопардовый френч с чёрными цветами" },
-    { "src": "img/white-flower.webp", "w": 825, "h": 1100, "name": "White Bloom", "swatch": "#efe6e1", "alt": "Молочный квадратный ноготь с объёмным белым цветком" },
-    { "src": "img/y2k-stars.webp", "w": 825, "h": 1100, "name": "Y2K Milk", "swatch": "#e9d3d7", "alt": "Квадратные ногти в стиле Y2K: звёзды, горошек, хромовые подвески" },
-    { "src": "img/french-disco.webp", "w": 825, "h": 1100, "name": "Classic French", "swatch": "#ecc9c2", "alt": "Классический белый френч на длинных миндальных ногтях" },
-    { "src": "img/red-stripes.webp", "w": 825, "h": 1100, "name": "Bordeaux Stripes", "swatch": "#6b1424", "alt": "Бордовые и молочные ногти с полосками и горошком" },
-    { "src": "img/nude-stiletto.webp", "w": 825, "h": 1100, "name": "Nude Ombré", "swatch": "#dfc0b3", "alt": "Нюдовые стилеты с молочным омбре" },
-    { "src": "img/foil-square.webp", "w": 825, "h": 1100, "name": "Holo Foil", "swatch": "#9fb0cf", "alt": "Квадратный ноготь с голографической фольгой и белым френчем" },
-    { "src": "img/red-classic.webp", "w": 825, "h": 1100, "name": "Classic Red", "swatch": "#d0101e", "alt": "Классический красный маникюр на коротких ногтях" }
+    { "src": "img/hero-polka.webp", "w": 1050, "h": 1400, "alt": "Длинные шоколадные стилеты в белый горошек" },
+    { "src": "img/cherry-glitter.webp", "w": 825, "h": 1100, "alt": "Вишнёвый маникюр с серебряным глиттером на миндальных ногтях" },
+    { "src": "img/pink-jelly.webp", "w": 825, "h": 1100, "alt": "Прозрачно-розовые желейные стилеты с объёмным сердцем" },
+    { "src": "img/gold-stiletto.webp", "w": 825, "h": 1100, "alt": "Золотые стилеты с белой росписью" },
+    { "src": "img/y2k-stars.webp", "w": 825, "h": 1100, "alt": "Квадратные ногти в стиле Y2K: звёзды, горошек, хромовые подвески" },
+    { "src": "img/red-silver-stiletto.webp", "w": 825, "h": 1100, "alt": "Красно-серебряные стилеты с хромовой росписью" },
+    { "src": "img/pink-leopard.webp", "w": 825, "h": 1100, "alt": "Розовый леопардовый френч с чёрными цветами" },
+    { "src": "img/white-flower.webp", "w": 825, "h": 1100, "alt": "Молочный квадратный ноготь с объёмным белым цветком" },
+    { "src": "img/blue-aura.webp", "w": 825, "h": 1100, "alt": "Синий аура-маникюр на коротких квадратных ногтях" },
+    { "src": "img/french-disco.webp", "w": 825, "h": 1100, "alt": "Классический белый френч на длинных миндальных ногтях" },
+    { "src": "img/red-stripes.webp", "w": 825, "h": 1100, "alt": "Бордовые и молочные ногти с полосками и горошком" },
+    { "src": "img/nude-stiletto.webp", "w": 825, "h": 1100, "alt": "Нюдовые стилеты с молочным омбре" },
+    { "src": "img/foil-square.webp", "w": 825, "h": 1100, "alt": "Квадратный ноготь с голографической фольгой и белым френчем" },
+    { "src": "img/red-classic.webp", "w": 825, "h": 1100, "alt": "Классический красный маникюр на коротких ногтях" }
   ],
 
   "students": { "todo": "Фото работ учениц (5–10 штук)" },

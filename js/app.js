@@ -1,10 +1,11 @@
-/* Riga Manicure — laku katalogs. Saturs no content.json. Izvēlētais tonis pārkrāso visu lapu (--accent). */
+/* Riga Manicure — Y2K. Saturs no content.json; uzlīmes, dzirksteles, kurs.exe, dienasgrāmata, čats. */
 (function () {
   "use strict";
   var root = document.documentElement;
   var MOTION = root.classList.contains("motion");
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
   if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
+  if (hasGSAP && window.Draggable) gsap.registerPlugin(Draggable);
   if (!hasGSAP) { root.classList.remove("motion"); MOTION = false; }
   var FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -12,172 +13,191 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var get = function (o, p) { return p.split(".").reduce(function (a, k) { return a == null ? a : a[k]; }, o); };
-  var no = function (i) { return "No. " + String(i + 1).padStart(2, "0"); };
-  var small = function (src) { return src.replace(/\.webp$/, "-600.webp"); };
-  // gaišam tonim teksts melns, tumšam balts
-  var light = function (hex) {
-    var n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255].map(function (v) { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); });
-    return .2126 * c[0] + .7152 * c[1] + .0722 * c[2] > .4;
-  };
+  var rnd = function (a, b) { return a + Math.random() * (b - a); };
 
   $("#year").textContent = new Date().getFullYear();
-
-  var WORKS = [], current = 0;
+  if (MOTION) intro(); else stickersDrag();
 
   fetch("content.json", { cache: "no-cache" })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (d) { build(d); after(); })
-    .catch(function () { after(); });
+    .then(function (d) { build(d); after(d); })
+    .catch(function () { after(null); });
 
-  function todo(t, big) { return '<div class="todo' + (big ? " todo-big" : "") + '"><b>Уточняется.</b>' + esc(t) + "</div>"; }
+  /* =========================================================
+     Saturs
+     ========================================================= */
+  function todo(t, big) { return '<div class="todo' + (big ? " todo-big" : "") + '"><b>скоро здесь ♡</b>' + esc(t) + "</div>"; }
 
   function build(d) {
-    WORKS = d.works;
     var book = d.telegram || d.instagramDm;
     $$("[data-book]").forEach(function (a) { a.href = book; });
     $$("[data-ig]").forEach(function (a) { a.href = d.instagram; });
 
     $$("[data-field]").forEach(function (el) {
       var key = el.getAttribute("data-field"), v = get(d, key);
-      if (v && v.todo) { el.innerHTML = todo(v.todo, /program|students|reviews/.test(key)); return; }
-      if (key === "course.program" && Array.isArray(v)) {
-        el.innerHTML = '<ol class="s-list">' + v.map(function (p) {
-          return "<li><span><b>" + esc(p.title) + "</b>" + (p.items ? "<small>" + p.items.map(esc).join(", ") + "</small>" : "") + "</span></li>";
-        }).join("") + "</ol>"; return;
-      }
-      if (key === "students" && Array.isArray(v)) {
-        el.innerHTML = '<ul class="cards">' + v.map(function (s) {
-          return '<li class="card"><div class="card-img"><img src="' + esc(s.src) + '" loading="lazy" alt="' + esc(s.alt || "Работа ученицы") + '"></div></li>';
-        }).join("") + "</ul>"; return;
-      }
-      if (key === "reviews" && Array.isArray(v)) {
-        el.innerHTML = '<ul class="r-list">' + v.map(function (r) {
-          return "<li><blockquote>" + esc(r.text) + "</blockquote>" + (r.name ? "<footer>" + esc(r.name) + "</footer>" : "") + "</li>";
-        }).join("") + "</ul>"; return;
-      }
-      if (Array.isArray(v)) { el.innerHTML = v.map(esc).join("<br>"); return; }
+      if (key === "reviews") { el.innerHTML = chatHTML(v); return; }
+      if (v && v.todo) { el.innerHTML = todo(v.todo, /program|students/.test(key)); return; }
+      if (key === "course.program" && Array.isArray(v)) { el.innerHTML = programHTML(v); return; }
+      if (key === "students" && Array.isArray(v)) { el.innerHTML = polaHTML(v); return; }
+      if (Array.isArray(v)) { el.innerHTML = "<ul>" + v.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>"; return; }
       if (v != null) el.textContent = v;
     });
 
-    // palete
-    $('[data-list="palette"]').innerHTML = WORKS.map(function (w, i) {
-      return '<button type="button" role="radio" aria-checked="' + (i === 0) + '" data-i="' + i + '" style="background:' + w.swatch + ';--tc:' + (light(w.swatch) ? "#141112" : "#fff") +
-        '" aria-label="' + no(i) + " " + esc(w.name) + '"><span>' + String(i + 1).padStart(2, "0") + "</span></button>";
-    }).join("");
-
-    // svītrkods no toņiem
-    var bars = "";
-    WORKS.forEach(function (w, i) { bars += '<i style="--w:' + (2 + (i * 7) % 6) + "px;--c:" + w.swatch + '"></i><i style="--w:' + (1 + (i * 3) % 3) + 'px"></i>'; });
-    $('[data-list="barcode"]').innerHTML = bars;
-
-    // katalogs
-    $('[data-list="works"]').innerHTML = WORKS.map(function (w, i) {
-      return '<li class="card" style="--sw:' + w.swatch + '"><button type="button" data-i="' + i + '" aria-label="' + no(i) + " " + esc(w.name) + ": " + esc(w.alt) + '">' +
-        '<div class="card-img"><img src="' + esc(small(w.src)) + '" width="600" height="800" loading="lazy" alt="' + esc(w.alt) + '"><span class="card-coat" aria-hidden="true"></span></div>' +
-        '<div class="card-meta"><span class="dot" aria-hidden="true"></span><span class="card-no">' + no(i) + '</span><span class="card-hex">' + w.swatch.toUpperCase() + '</span><span class="card-name">' + esc(w.name) + "</span></div>" +
-        "</button></li>";
+    $('[data-list="works"]').innerHTML = d.works.map(function (w, i) {
+      return '<li><button type="button" data-i="' + i + '" aria-label="Открыть фото: ' + esc(w.alt) + '">' +
+        '<img src="' + esc(w.src.replace(/\.webp$/, "-600.webp")) + '" width="600" height="800" loading="lazy" alt="' + esc(w.alt) + '"></button></li>';
     }).join("");
   }
 
-  function after() {
-    if (WORKS.length) { setTone(0, false); initPalette(); initLightbox(); }
-    if (MOTION) motion(); else $$(".card-coat").forEach(function (c) { c.style.transform = "scaleY(0)"; });
+  // Programma: [{ "title": "...", "items": ["...", "..."] }]
+  function programHTML(list) {
+    return '<ol class="p-list">' + list.map(function (p) {
+      return '<li class="p-item"><span class="p-check" aria-hidden="true"></span><span>' + esc(p.title) +
+        (p.items && p.items.length ? "<small>" + p.items.map(esc).join(", ") + "</small>" : "") + "</span></li>";
+    }).join("") + "</ol>";
+  }
+  function polaHTML(list) {
+    return '<ul class="pola">' + list.map(function (s) {
+      return '<li><img src="' + esc(s.src) + '" loading="lazy" alt="' + esc(s.alt || "Работа ученицы") + '"></li>';
+    }).join("") + "</ul>";
+  }
+  // Atsauksmes: [{ "text": "...", "name": "..." }] → burbuļi; kamēr nav, "raksta…" + vietturis
+  function chatHTML(v) {
+    if (Array.isArray(v)) {
+      return v.map(function (r, i) {
+        return '<div class="bubble' + (i % 2 ? " bubble-me" : "") + '">' + esc(r.text) + (r.name ? "<small>" + esc(r.name) + "</small>" : "") + "</div>";
+      }).join("");
+    }
+    return '<span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>' + todo(v && v.todo ? v.todo : "Отзывы учениц");
+  }
+
+  function after(d) {
+    if (d) initLightbox(d.works);
+    initFloat(); initBar();
+    if (MOTION) scrollMotion(); else $$(".p-item").forEach(function (i) { i.classList.add("is-done"); });
+    if (MOTION) sparks();
     root.classList.add("ready");
   }
 
   /* =========================================================
-     Toņa maiņa: lapa + testeris
+     Ievads: burti "uzpūšas", birka uzlīp, uzlīmes nokrīt
      ========================================================= */
-  function setTone(i, animate) {
-    if (!WORKS[i]) return;
-    var w = WORKS[i], prev = current; current = i;
-    root.style.setProperty("--accent", w.swatch);
-    root.style.setProperty("--on-accent", light(w.swatch) ? "#141112" : "#fff");
-    $$(".palette button").forEach(function (b) { b.setAttribute("aria-checked", String(+b.dataset.i === i)); });
-    $("#testerNo").textContent = no(i);
-    $("#testerName").textContent = w.name;
-    $("#testerHex").textContent = w.swatch.toUpperCase();
-    var img = $("#testerImg");
-    var swap = function () { img.srcset = small(w.src) + " 600w, " + w.src + " " + (w.w || 825) + "w"; img.src = small(w.src); img.alt = w.alt; };
-    if (!MOTION || !animate || prev === i) { swap(); return; }
-    // jauns "slānis" pārkrāso foto un atklāj nākamo darbu
-    var coat = $(".tester-coat");
-    gsap.timeline({ overwrite: true })
-      .set(coat, { transformOrigin: "bottom" })
-      .to(coat, { scaleY: 1, duration: .35, ease: "power2.in" })
-      .add(swap)
-      .set(coat, { transformOrigin: "top" })
-      .to(coat, { scaleY: 0, duration: .55, ease: "power3.out", delay: .08 });
+  function intro() {
+    var tl = gsap.timeline({ delay: .1 });
+    tl.fromTo(".hero-title .chrome", { opacity: 0, scale: .3, rotation: function () { return rnd(-12, 12); } },
+        { opacity: 1, scale: 1, rotation: 0, duration: .9, stagger: .12, ease: "elastic.out(1, .55)" })
+      .fromTo(".tag-hero", { opacity: 0, scale: 2.2, rotation: -30 }, { opacity: 1, scale: 1, rotation: -6, duration: .5, ease: "back.out(2.5)" }, "-=.45")
+      .fromTo(".sticker", { opacity: 0, y: function () { return rnd(-260, -160); }, rotation: function () { return rnd(-25, 25); } },
+        { opacity: 1, y: 0, rotation: 0, duration: 1, stagger: .12, ease: "bounce.out" }, "-=.6")
+      .add(function () { root.classList.add("intro-done"); stickersDrag(); });
+    setTimeout(function () { if (!root.classList.contains("intro-done")) { tl.progress(1); } }, 4000);
   }
 
-  function initPalette() {
-    var pal = $(".palette");
-    pal.addEventListener("click", function (e) { var b = e.target.closest("button[data-i]"); if (b) setTone(+b.dataset.i, true); });
-    pal.addEventListener("keydown", function (e) {
-      if (!/Arrow(Left|Right|Up|Down)/.test(e.key)) return;
-      e.preventDefault();
-      var n = (current + (/Right|Down/.test(e.key) ? 1 : -1) + WORKS.length) % WORKS.length;
-      setTone(n, true); $('.palette button[data-i="' + n + '"]').focus();
+  // Uzlīmes var vilkt; paceltā uzlīme nonāk virspusē
+  function stickersDrag() {
+    if (!window.Draggable) return;
+    var z = 10;
+    Draggable.create(".sticker", {
+      bounds: ".hero", edgeResistance: .7, zIndexBoost: false,
+      onPress: function () { this.target.style.zIndex = ++z; gsap.to(this.target, { scale: 1.06, duration: .2 }); },
+      onRelease: function () { gsap.to(this.target, { scale: 1, rotation: rnd(-6, 6), duration: .6, ease: "elastic.out(1, .4)" }); }
     });
-    $$(".palette button").forEach(function (b) { b.tabIndex = +b.dataset.i === 0 ? 0 : -1; });
-    pal.addEventListener("focusin", function () { $$(".palette button").forEach(function (b) { b.tabIndex = +b.dataset.i === current ? 0 : -1; }); });
-    if (FINE) pal.addEventListener("pointerover", function (e) { var b = e.target.closest("button[data-i]"); if (b) setTone(+b.dataset.i, true); });
   }
 
-  /* ---------- Foto pilnekrānā (atverot, lapa pieņem darba toni) ---------- */
-  function initLightbox() {
-    var dlg = $("#lightbox"), img = $(".lb-img", dlg), cap = $(".lb-cap", dlg), idx = 0, opener = null;
+  /* =========================================================
+     Ritināšana
+     ========================================================= */
+  function scrollMotion() {
+    // kurs.exe "atveras" kā logs
+    gsap.fromTo(".win", { scale: .55, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: .8, ease: "back.out(1.6)",
+      scrollTrigger: { trigger: ".course", start: "top 75%" } });
+
+    // dienasgrāmata: lapa ieslīd, punkti atzīmējas ar sirsniņu
+    gsap.fromTo(".diary", { y: 80, rotation: -6, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 1, ease: "back.out(1.4)",
+      scrollTrigger: { trigger: ".diary-wrap", start: "top 80%" } });
+    $$(".p-item").forEach(function (it) {
+      ScrollTrigger.create({ trigger: it, start: "top 70%", onEnter: function () { it.classList.add("is-done"); }, onLeaveBack: function () { it.classList.remove("is-done"); } });
+    });
+
+    // virsraksti "uzpūšas"
+    $$(".sec-title .chrome, .final-title .chrome").forEach(function (h) {
+      gsap.fromTo(h, { scale: .4, opacity: 0 }, { scale: 1, opacity: 1, duration: .9, ease: "elastic.out(1, .55)", scrollTrigger: { trigger: h, start: "top 85%" } });
+    });
+    $$(".tag-sec").forEach(function (t) {
+      gsap.fromTo(t, { scale: 2, opacity: 0, rotation: 30 }, { scale: 1, opacity: 1, rotation: 5, duration: .5, ease: "back.out(2.5)", scrollTrigger: { trigger: t, start: "top 88%" } });
+    });
+
+    // uzlīmju siena: katra uzlīme "uzlīp" ar savu pagriezienu
+    ScrollTrigger.batch(".wall li", { start: "top 90%", once: true, onEnter: function (els) {
+      gsap.fromTo(els, { scale: .4, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: .7, stagger: .07, ease: "back.out(1.8)" });
+    } });
+
+    // polaroīdi "attīstās"
+    ScrollTrigger.batch(".pola li", { start: "top 90%", once: true, onEnter: function (els) {
+      gsap.fromTo(els, { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: .1, duration: .6, ease: "back.out(1.6)" });
+      gsap.fromTo($$("img", els[0].parentNode), { filter: "brightness(2.2) saturate(0)" }, { filter: "brightness(1) saturate(1)", duration: 2.2, stagger: .1, ease: "power1.out" });
+    } });
+
+    // čats: ziņas parādās pa vienai
+    gsap.fromTo(".phone", { y: 80, opacity: 0, rotation: 4 }, { y: 0, opacity: 1, rotation: 0, duration: .8, ease: "back.out(1.5)", scrollTrigger: { trigger: ".reviews", start: "top 80%" } });
+    gsap.fromTo(".phone-chat > *", { opacity: 0, y: 20, scale: .9 }, { opacity: 1, y: 0, scale: 1, duration: .45, stagger: .5, ease: "back.out(2)",
+      scrollTrigger: { trigger: ".phone-chat", start: "top 80%" } });
+
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+    addEventListener("load", function () { ScrollTrigger.refresh(); });
+  }
+
+  /* =========================================================
+     Dzirksteles: aiz peles; telefonā pie pieskāriena
+     ========================================================= */
+  function sparks() {
+    var last = 0, live = 0;
+    function spawn(x, y, n, spread) {
+      for (var i = 0; i < n && live < 40; i++) {
+        var s = document.createElement("span"); s.className = "spark"; document.body.appendChild(s); live++;
+        gsap.set(s, { x: x, y: y, scale: rnd(.5, 1.2), rotation: rnd(0, 90) });
+        gsap.to(s, { x: x + rnd(-spread, spread), y: y + rnd(-spread, spread * .4) - 20, rotation: "+=" + rnd(90, 200), scale: 0, opacity: 0,
+          duration: rnd(.6, 1.1), ease: "power2.out", onComplete: function () { this.targets()[0].remove(); live--; } });
+      }
+    }
+    if (FINE) addEventListener("pointermove", function (e) { var t = performance.now(); if (t - last < 45) return; last = t; spawn(e.clientX, e.clientY, 1, 26); }, { passive: true });
+    addEventListener("pointerdown", function (e) { spawn(e.clientX, e.clientY, 8, 60); }, { passive: true });
+  }
+
+  /* ---------- Peldošā sirds un josla ---------- */
+  function initFloat() {
+    var f = $("#floatHeart"), heroOut = false, finalIn = false;
+    var set = function () { f.classList.toggle("is-on", heroOut && !finalIn); };
+    if (!("IntersectionObserver" in window)) return;
+    new IntersectionObserver(function (e) { heroOut = !e[0].isIntersecting; set(); }, { threshold: .15 }).observe($(".hero"));
+    new IntersectionObserver(function (e) { finalIn = e[0].isIntersecting; set(); }).observe($(".final"));
+  }
+  function initBar() {
+    var bar = $(".bar"), last = 0;
+    addEventListener("scroll", function () { var y = scrollY; bar.classList.toggle("is-hidden", y > last && y > 300); last = y; }, { passive: true });
+  }
+
+  /* ---------- Foto pilnekrānā ---------- */
+  function initLightbox(works) {
+    var dlg = $("#lightbox"), img = $(".lb-img", dlg), idx = 0, opener = null;
     if (!dlg.showModal) return;
     function show(i) {
-      idx = (i + WORKS.length) % WORKS.length;
-      var w = WORKS[idx];
-      img.src = w.src; img.alt = w.alt;
-      cap.innerHTML = '<span class="dot" style="background:' + w.swatch + '"></span>' + no(idx) + " " + esc(w.name);
-      setTone(idx, false);
-      if (MOTION) gsap.fromTo(img, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .45, ease: "power3.out" });
+      idx = (i + works.length) % works.length;
+      img.src = works[idx].src; img.alt = works[idx].alt;
+      if (MOTION) gsap.fromTo(img, { opacity: 0, scale: .85, rotation: rnd(-6, 6) }, { opacity: 1, scale: 1, rotation: 0, duration: .55, ease: "back.out(1.8)" });
     }
-    $(".cards").addEventListener("click", function (e) {
+    $(".wall").addEventListener("click", function (e) {
       var b = e.target.closest("button[data-i]"); if (!b) return;
       opener = b; show(+b.dataset.i); dlg.showModal();
     });
     $(".lb-close", dlg).addEventListener("click", function () { dlg.close(); });
     $(".lb-prev", dlg).addEventListener("click", function () { show(idx - 1); });
     $(".lb-next", dlg).addEventListener("click", function () { show(idx + 1); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
     dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(idx - 1); if (e.key === "ArrowRight") show(idx + 1); });
     dlg.addEventListener("close", function () { if (opener) opener.focus(); });
     var sx = 0;
     dlg.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
     dlg.addEventListener("touchend", function (e) { var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1)); });
-  }
-
-  /* =========================================================
-     Kustība: krāsu paraugi izbīd, no kartītēm "nomazgājas" laka slānis
-     ========================================================= */
-  function motion() {
-    gsap.from(".hero-title, .hero-sub, .hero-cta, .kicker", { y: 24, opacity: 0, duration: .9, stagger: .08, ease: "expo.out" });
-    // pēc ieslīdēšanas transform atdodam CSS, lai izvēlētais tonis paceļas pareizi
-    gsap.from(".palette button", { yPercent: 60, opacity: 0, duration: .8, stagger: .035, ease: "expo.out", delay: .25, clearProps: "transform" });
-    gsap.from(".tester-img img", { scale: 1.12, duration: 1.6, ease: "expo.out" });
-
-    gsap.from(".label", { y: 50, opacity: 0, duration: 1, ease: "expo.out", scrollTrigger: { trigger: ".label-sec", start: "top 75%" } });
-    gsap.from(".label-rows > div", { x: -20, opacity: 0, duration: .6, stagger: .06, ease: "expo.out", scrollTrigger: { trigger: ".label-rows", start: "top 80%" } });
-    gsap.from(".barcode i", { scaleY: 0, transformOrigin: "bottom", duration: .5, stagger: .015, ease: "power2.out", scrollTrigger: { trigger: ".label-foot", start: "top 92%" } });
-
-    $$(".sec-head").forEach(function (h) {
-      gsap.from(h, { y: 30, opacity: 0, duration: .8, ease: "expo.out", scrollTrigger: { trigger: h, start: "top 88%" } });
-    });
-
-    gsap.set(".card-coat", { scaleY: 1 });
-    ScrollTrigger.batch(".cards .card", { start: "top 88%", once: true, onEnter: function (els) {
-      els.forEach(function (el, i) {
-        gsap.to($(".card-coat", el), { scaleY: 0, duration: .9, delay: i * .08, ease: "power3.inOut" });
-        gsap.from($(".card-meta", el), { y: 10, opacity: 0, duration: .6, delay: .3 + i * .08, ease: "expo.out" });
-      });
-    } });
-
-    gsap.from(".final-title", { y: 40, opacity: 0, duration: 1, ease: "expo.out", scrollTrigger: { trigger: ".final", start: "top 75%" } });
-
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
-    addEventListener("load", function () { ScrollTrigger.refresh(); });
   }
 })();
