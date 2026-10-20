@@ -1,0 +1,44 @@
+{
+  "_info": "Viss saturs vienā vietā. Lauki ar \"todo\" vēl jāaizpilda ar Karolīnas datiem: lapā tie redzami kā punktēti bloki.",
+
+  "telegram": "",
+  "_telegram_info": "Ieraksti Telegram saiti, piem. https://t.me/lietotajs. Kamēr tukšs, pogas ved uz Instagram Direct.",
+  "instagramDm": "https://ig.me/m/xo.xo_nails_",
+  "instagram": "https://www.instagram.com/xo.xo_nails_/",
+
+  "master": {
+    "name": "Каролина",
+    "years": 6,
+    "area": "Рига, Саркандаугава",
+    "langs": "LV / RU"
+  },
+
+  "course": {
+    "title": { "todo": "Название курса" },
+    "audience": { "todo": "Для кого курс: с нуля, повышение квалификации, конкретная техника" },
+    "program": { "todo": "Программа по дням или по пунктам: что ученица узнает и научится делать" },
+    "format": { "todo": "Формат: индивидуально или группа, сколько дней/часов, где проходит" },
+    "price": { "todo": "Цена" },
+    "includes": { "todo": "Что входит: материалы, модели, сертификат, поддержка после курса" }
+  },
+
+  "works": [
+    { "src": "img/hero-polka.webp", "w": 1050, "h": 1400, "alt": "Длинные шоколадные стилеты в белый горошек" },
+    { "src": "img/cherry-glitter.webp", "w": 825, "h": 1100, "alt": "Вишнёвый маникюр с серебряным глиттером на миндальных ногтях" },
+    { "src": "img/pink-jelly.webp", "w": 825, "h": 1100, "alt": "Прозрачно-розовые желейные стилеты с объёмным сердцем" },
+    { "src": "img/gold-stiletto.webp", "w": 825, "h": 1100, "alt": "Золотые стилеты с белой росписью" },
+    { "src": "img/y2k-stars.webp", "w": 825, "h": 1100, "alt": "Квадратные ногти в стиле Y2K: звёзды, горошек, хромовые подвески" },
+    { "src": "img/red-silver-stiletto.webp", "w": 825, "h": 1100, "alt": "Красно-серебряные стилеты с хромовой росписью" },
+    { "src": "img/pink-leopard.webp", "w": 825, "h": 1100, "alt": "Розовый леопардовый френч с чёрными цветами" },
+    { "src": "img/white-flower.webp", "w": 825, "h": 1100, "alt": "Молочный квадратный ноготь с объёмным белым цветком" },
+    { "src": "img/blue-aura.webp", "w": 825, "h": 1100, "alt": "Синий аура-маникюр на коротких квадратных ногтях" },
+    { "src": "img/french-disco.webp", "w": 825, "h": 1100, "alt": "Классический белый френч на длинных миндальных ногтях" },
+    { "src": "img/red-stripes.webp", "w": 825, "h": 1100, "alt": "Бордовые и молочные ногти с полосками и горошком" },
+    { "src": "img/nude-stiletto.webp", "w": 825, "h": 1100, "alt": "Нюдовые стилеты с молочным омбре" },
+    { "src": "img/foil-square.webp", "w": 825, "h": 1100, "alt": "Квадратный ноготь с голографической фольгой и белым френчем" },
+    { "src": "img/red-classic.webp", "w": 825, "h": 1100, "alt": "Классический красный маникюр на коротких ногтях" }
+  ],
+
+  "students": { "todo": "Фото работ учениц (5–10 штук)" },
+  "reviews": { "todo": "Отзывы учениц (можно скрины переписок)" }
+}
