@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Отпечатка на готовность — онлайн-курс от Каролины | xo.xo nails</title>
-<meta name="description" content="Онлайн-курс «Отпечатка на готовность» от мастера Каролины: видеоуроки с озвучкой, все формы, разбор верхних форм, 3 месяца личного сопровождения и сертификат. 100 €.">
+<title>Отпечатка на готовность — индивидуальный онлайн-курс | xo.xo nails</title>
+<meta name="description" content="Индивидуальный онлайн-курс «Отпечатка на готовность» от @xo.xo_nails_: видеоуроки с озвучкой, все формы, разбор верхних форм, 3 месяца личного сопровождения и сертификат. 100 €.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:title" content="Отпечатка на готовность — онлайн-курс от Каролины">
+<meta property="og:title" content="Отпечатка на готовность — индивидуальный онлайн-курс">
 <meta property="og:description" content="Видеоуроки, личный разбор ошибок и обратная связь даже после курса. 100 €.">
 <meta property="og:image" content="riga-manicure-update/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -71,29 +71,35 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
 .hero-tag{display:inline-block;font-weight:700;background:var(--white);border:2px solid var(--ink);border-radius:999px;padding:6px 14px;margin-bottom:22px}
 .hero h1{font-size:clamp(40px,6.6vw,82px);font-weight:900;line-height:.98}
-.hero h1 .row2{display:block;-webkit-text-stroke:2px var(--ink);color:var(--white);text-shadow:4px 4px 0 var(--berry)}
+.hero h1 .row2{display:block;-webkit-text-stroke:2px var(--ink);color:var(--white);}
 .hero .by{font:700 clamp(20px,2.4vw,26px)/1.2 var(--display);margin:18px 0 18px;color:var(--berry)}
 .hero .lead{margin:0 0 30px}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
 .facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px;padding:0;list-style:none}
 .facts li{font-size:15px;color:var(--ink-soft)}
 .facts b{display:block;font:900 26px/1.1 var(--display);color:var(--ink)}
+.facts .hot{background:var(--berry);color:#fff;border:2px solid var(--ink);border-radius:14px;padding:8px 16px;box-shadow:4px 4px 0 var(--ink);rotate:-2deg}
+.facts .hot b{color:#fff}
 
-.board{position:relative;height:540px;touch-action:none}
-.hint{position:absolute;bottom:-6px;left:0;right:0;text-align:center;font-size:14px;color:var(--ink-soft);font-style:italic}
+.board{position:relative;height:600px;margin-top:40px;touch-action:none}
+.hint{position:absolute;bottom:-44px;left:0;right:0;text-align:center;font-size:14px;color:var(--ink-soft);font-style:italic}
 .sticker{position:absolute;width:44%;background:#fff;padding:8px 8px 26px;border:2px solid var(--ink);border-radius:14px;box-shadow:6px 6px 0 var(--ink);cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none}
 .sticker:active{cursor:grabbing}
 .sticker img{border-radius:8px;aspect-ratio:3/4;object-fit:cover;width:100%;pointer-events:none}
 .sticker.wide img{aspect-ratio:1/1}
-.s1{left:2%;top:4%;rotate:-7deg}
-.s2{left:50%;top:0;rotate:5deg}
-.s3{left:28%;top:34%;rotate:-2deg;z-index:2}
-.s4{left:56%;top:46%;rotate:8deg}
-.s5{left:0;top:52%;rotate:4deg;width:36%}
+.sticker.rv{width:62%;padding:6px;background:#1c1520}
+.sticker.rv img{aspect-ratio:auto;border-radius:10px}
+.board-title{position:absolute;top:-34px;left:0;font:900 18px/1 var(--display);color:var(--berry)}
+.s1{left:0;top:2%;rotate:-5deg}
+.s2{left:38%;top:6%;rotate:4deg}
+.s3{left:4%;top:30%;rotate:3deg}
+.s4{left:36%;top:40%;rotate:-4deg}
+.s5{left:2%;top:60%;rotate:-2deg}
+.s6{left:38%;top:68%;rotate:5deg}
 .heart{position:absolute;font-size:44px;color:var(--berry);right:4%;top:-4%;rotate:12deg;pointer-events:none}
 @media (max-width:900px){
   .hero .wrap{grid-template-columns:1fr}
-  .board{height:min(118vw,520px);margin-top:16px}
+  .board{height:min(150vw,640px);margin-top:56px}
 }
 
 /* kurs.exe window */
@@ -149,8 +155,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .gallery button:focus-visible{outline:3px solid var(--berry);outline-offset:3px}
 .gallery img{border-radius:9px;aspect-ratio:3/4;object-fit:cover;width:100%}
 .students{background:var(--pink-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
-.students .gallery{grid-template-columns:repeat(3,1fr)}
-@media (max-width:640px){.students .gallery{grid-template-columns:repeat(2,1fr)}.students .gallery button:last-child{grid-column:1/-1}.students .gallery button:last-child img{aspect-ratio:4/3}}
+.students .gallery{grid-template-columns:repeat(4,1fr);max-width:none}
+@media (max-width:900px){.students .gallery{grid-template-columns:repeat(2,1fr)}}
 
 /* reviews */
 .reviews-grid{columns:3 300px;column-gap:20px;margin-top:36px}
@@ -199,10 +205,10 @@ footer.site a{color:#fff}
     <nav class="nav" aria-label="Разделы">
       <a href="#kurs">курс</a>
       <a href="#programma">программа</a>
-      <a href="#raboty">работы</a>
+      <a href="#raboty">ученицы</a>
       <a href="#otzyvy">отзывы</a>
     </nav>
-    <a class="btn btn-main" href="https://ig.me/m/xo.xo_nails_" target="_blank" rel="noopener">Записаться ♡</a>
+    <a class="btn btn-main" href="https://t.me/KotyaK00" target="_blank" rel="noopener">Записаться ♡</a>
   </div>
 </header>
 
@@ -210,29 +216,31 @@ footer.site a{color:#fff}
 <section class="hero">
   <div class="wrap">
     <div>
-      <span class="hero-tag">онлайн-курс ✦ 3 месяца сопровождения</span>
+      <span class="hero-tag">индивидуальный онлайн-курс</span>
       <h1>Отпечатка <span class="row2">на готовность</span></h1>
-      <p class="by">от Каролины ♡</p>
-      <p class="lead">Видеоуроки с озвучкой, все формы и личный разбор твоих ошибок. Учишься в своём темпе из любой страны, а Каролина на связи и после окончания курса.</p>
+      <p class="by">от <a href="https://www.instagram.com/xo.xo_nails_/" target="_blank" rel="noopener" style="text-decoration:none">@xo.xo_nails_</a> ♡</p>
+      <p class="lead">Видеоуроки с озвучкой, все формы и личный разбор твоих ошибок. Учишься в своём темпе из любой страны, а я на связи и после окончания курса.</p>
       <div class="hero-ctas">
-        <a class="btn btn-main" href="https://ig.me/m/xo.xo_nails_" target="_blank" rel="noopener">Записаться на курс</a>
+        <a class="btn btn-main" href="https://t.me/KotyaK00" target="_blank" rel="noopener">Записаться на курс</a>
         <a class="btn btn-ghost" href="#kurs">Что входит</a>
       </div>
       <ul class="facts">
         <li><b>6 лет</b>за столом мастера</li>
         <li><b>5 форм</b>от квадрата до стилета</li>
-        <li><b>100 €</b>основной курс</li>
+        <li class="hot"><b>100 €</b>основной курс</li>
       </ul>
     </div>
 
-    <div class="board" id="board" aria-label="Работы Каролины. Наклейки можно двигать">
-      <div class="sticker s1"><img src="riga-manicure-update/img/work-cherry-bows-600.webp" alt="Длинный квадрат с вишнями, бантами и металлическим декором" draggable="false"></div>
-      <div class="sticker s2"><img src="img/hero-polka-600.webp" alt="Шоколадные стилеты в белый горошек" draggable="false"></div>
-      <div class="sticker s3"><img src="riga-manicure-update/img/student-pink-stiletto-600.webp" alt="Розовые стилеты" draggable="false"></div>
-      <div class="sticker s4"><img src="riga-manicure-update/img/work-berry-marble-600.webp" alt="Миндаль с ягодным мраморным дизайном" draggable="false"></div>
-      <div class="sticker s5 wide"><img src="riga-manicure-update/img/studio-files-600.webp" alt="Рука в чёрной перчатке с пилками на фоне диско-шаров" draggable="false"></div>
+    <div class="board" id="otzyvy" aria-label="Отзывы учениц. Наклейки можно двигать, нажми, чтобы прочитать">
+      <span class="board-title">отзывы учениц ♡</span>
+      <div class="sticker rv s1" data-full="riga-manicure-update/img/review-1.webp"><img src="riga-manicure-update/img/review-1.webp" alt="Отзыв ученицы 1" draggable="false"></div>
+      <div class="sticker rv s2" data-full="riga-manicure-update/img/review-2.webp"><img src="riga-manicure-update/img/review-2.webp" alt="Отзыв ученицы 2" draggable="false"></div>
+      <div class="sticker rv s3" data-full="riga-manicure-update/img/review-3.webp"><img src="riga-manicure-update/img/review-3.webp" alt="Отзыв ученицы 3" draggable="false"></div>
+      <div class="sticker rv s4" data-full="riga-manicure-update/img/review-4.webp"><img src="riga-manicure-update/img/review-4.webp" alt="Отзыв ученицы 4" draggable="false"></div>
+      <div class="sticker rv s5" data-full="riga-manicure-update/img/review-5.webp"><img src="riga-manicure-update/img/review-5.webp" alt="Отзыв ученицы 5" draggable="false"></div>
+      <div class="sticker rv s6" data-full="riga-manicure-update/img/review-6.webp"><img src="riga-manicure-update/img/review-6.webp" alt="Отзыв ученицы 6" draggable="false"></div>
       <span class="heart" aria-hidden="true">♡</span>
-      <p class="hint">psst… наклейки можно двигать</p>
+      <p class="hint">psst… наклейки можно двигать, нажми, чтобы прочитать</p>
     </div>
   </div>
 </section>
@@ -251,9 +259,9 @@ footer.site a{color:#fff}
       <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
         <h3>Для мастеров, которые хотят наращивать быстрее и чище</h3>
         <ul>
-          <li>Хочешь освоить верхние формы и получать ровную архитектуру почти без опила.</li>
+          <li>Хочешь освоить верхние формы и получать сразу правильную архитектуру почти без опила.</li>
           <li>Уже пробовала отпечатку, но не понимаешь, почему не получается.</li>
-          <li>Сомневаешься, что технику можно освоить онлайн: на курсе Каролина разбирает именно твои работы.</li>
+          <li>Сомневаешься, что технику можно усвоить онлайн: на курсе я разбираю именно твои трудности в работе.</li>
         </ul>
       </div>
       <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
@@ -279,10 +287,10 @@ footer.site a{color:#fff}
       <div class="panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
         <h3>Основной курс</h3>
         <div class="price"><span>100 €</span><span>9 400 ₽</span><span>5 000 грн</span></div>
-        <p style="margin:0">Дополнительные темы можно добавить за отдельную стоимость. Оплата и запись лично в переписке с Каролиной.</p>
+        <p style="margin:0">Дополнительные темы можно добавить за отдельную стоимость. Оплата и запись лично в переписке со мной.</p>
       </div>
       <div class="win-foot">
-        <a class="btn btn-main" href="https://ig.me/m/xo.xo_nails_" target="_blank" rel="noopener">Записаться</a>
+        <a class="btn btn-main" href="https://t.me/KotyaK00" target="_blank" rel="noopener">Записаться</a>
         <a class="btn btn-ghost" href="#programma">Программа</a>
       </div>
     </div>
@@ -295,10 +303,10 @@ footer.site a{color:#fff}
     <div class="prog-grid">
       <div>
         <ol class="lessons">
-          <li><div><b>Классическая отпечатка на готовность</b><small>Базовая техника от подготовки до снятия формы.</small></div></li>
-          <li><div><b>Отпечатка с выравниванием натурального ногтя</b><small>Когда собственная пластина неровная и нужна правильная архитектура.</small></div></li>
+          <li><div><b>Классическая отпечатка на готовность</b><small>Базовая техника от подбора форм до готового результата.</small></div></li>
+          <li><div><b>Отпечатка с выравниванием натурального ногтя</b><small>Работа с проблемными ногтями (взлётные, клюющие).</small></div></li>
           <li><div><b>Все формы</b><small>Квадрат, овал, миндаль, длинный квадрат и стилет.</small></div></li>
-          <li><div><b>Технический разбор верхних форм</b><small>Какие формы подходят, какие нет и почему.</small></div></li>
+          <li><div><b>Технический разбор верхних форм</b><small>Подбор форм для любого исходника.</small></div></li>
         </ol>
 
         <div class="block">
@@ -311,8 +319,8 @@ footer.site a{color:#fff}
 
         <div class="block">
           <h3>Индивидуальное сопровождение</h3>
-          <p>Курс — это не только видеоуроки, а работа лично с Каролиной. Уроки дают базу, а дальше вы разбираете именно твои трудности: что не получается, почему возникают ошибки и как их исправить.</p>
-          <p>Срок обучения 3 месяца, но и после окончания ты продолжаешь получать обратную связь.</p>
+          <p>Курс — это не только видеоуроки, а работа лично со мной. Уроки дают базу, а дальше мы разбираем именно твои трудности: что не получается, почему возникают ошибки и как их исправить.</p>
+          <p>Срок обучения 3 месяца, но и после окончания ты всегда можешь обратиться ко мне за помощью.</p>
         </div>
 
         <div class="block note">
@@ -330,42 +338,16 @@ footer.site a{color:#fff}
           <img src="riga-manicure-update/img/process-form-side-600.webp" data-full="riga-manicure-update/img/process-form-side.webp" alt="Тот же ноготь сбоку: ровная архитектура и изгиб" loading="lazy" data-lb="process">
           <figcaption>Вид сбоку: архитектура уже готова</figcaption>
         </figure>
-        <figure>
-          <img src="riga-manicure-update/img/studio-desk-600.webp" data-full="riga-manicure-update/img/studio-desk.webp" alt="Рабочее место Каролины: гели, верхние формы, лампа" loading="lazy" data-lb="process">
-          <figcaption>Материалы, которые Каролина советует на курсе</figcaption>
-        </figure>
       </div>
     </div>
   </div>
 </section>
 
-<section id="raboty" aria-labelledby="works-title">
+<section id="raboty" class="students" aria-labelledby="students-title">
   <div class="wrap">
     <div class="gal-head">
       <div>
-        <h2 id="works-title">Работы Каролины ✦</h2>
-        <p class="lead">Нажми на фото, чтобы рассмотреть. Ещё больше в <a href="https://www.instagram.com/xo.xo_nails_/" target="_blank" rel="noopener">@xo.xo_nails_</a></p>
-      </div>
-    </div>
-    <div class="gallery" data-group="works">
-      <button data-full="riga-manicure-update/img/work-cherry-bows.webp"><img src="riga-manicure-update/img/work-cherry-bows-600.webp" alt="Длинный квадрат с вишнями и металлическим декором" loading="lazy"></button>
-      <button data-full="riga-manicure-update/img/work-burgundy-lace.webp"><img src="riga-manicure-update/img/work-burgundy-lace-600.webp" alt="Бордовый длинный квадрат с кружевом и объёмными бантами" loading="lazy"></button>
-      <button data-full="riga-manicure-update/img/work-berry-marble.webp"><img src="riga-manicure-update/img/work-berry-marble-600.webp" alt="Миндаль с ягодным мраморным дизайном" loading="lazy"></button>
-      <button data-full="riga-manicure-update/img/work-white-stars.webp"><img src="riga-manicure-update/img/work-white-stars-600.webp" alt="Нюдовый миндаль с белыми звёздами и стразами" loading="lazy"></button>
-      <button data-full="riga-manicure-update/img/work-black-white.webp"><img src="riga-manicure-update/img/work-black-white-600.webp" alt="Длинный квадрат в чёрно-белом дизайне с металлическими бусинами" loading="lazy"></button>
-      <button data-full="img/hero-polka-600.webp"><img src="img/hero-polka-600.webp" alt="Шоколадные стилеты в белый горошек" loading="lazy"></button>
-      <button data-full="img/pink-jelly-600.webp"><img src="img/pink-jelly-600.webp" alt="Розовые желейные стилеты с объёмным сердцем" loading="lazy"></button>
-      <button data-full="img/y2k-stars-600.webp"><img src="img/y2k-stars-600.webp" alt="Ногти в стиле Y2K со звёздами и горошком" loading="lazy"></button>
-      <button data-full="img/gold-stiletto-600.webp"><img src="img/gold-stiletto-600.webp" alt="Золотые стилеты с белой росписью" loading="lazy"></button>
-    </div>
-  </div>
-</section>
-
-<section class="students" aria-labelledby="students-title">
-  <div class="wrap">
-    <div class="gal-head">
-      <div>
-        <h2 id="students-title">Работы учениц ♡</h2>
+        <h2 id="students-title" style="color:var(--berry)">Работы учениц ♡</h2>
         <p class="lead">Отпечатка на готовность после курса: чистая архитектура и ровные формы.</p>
       </div>
     </div>
@@ -373,20 +355,11 @@ footer.site a{color:#fff}
       <button data-full="riga-manicure-update/img/student-pink-stiletto.webp"><img src="riga-manicure-update/img/student-pink-stiletto-600.webp" alt="Розовые длинные стилеты, работа ученицы" loading="lazy"></button>
       <button data-full="riga-manicure-update/img/student-nude-stiletto.webp"><img src="riga-manicure-update/img/student-nude-stiletto-600.webp" alt="Нюдовые стилеты, работа ученицы" loading="lazy"></button>
       <button data-full="riga-manicure-update/img/student-french.webp"><img src="riga-manicure-update/img/student-french-600.webp" alt="Длинный квадрат с белым френчем, работа ученицы" loading="lazy"></button>
-    </div>
-  </div>
-</section>
-
-<section id="otzyvy" aria-labelledby="rev-title">
-  <div class="wrap">
-    <h2 id="rev-title">Отзывы учениц</h2>
-    <div class="reviews-grid">
-      <blockquote class="review"><p>Потрясающий курс! Очень боялась, что онлайн не смогу освоить верхние формы, но уроки выстроены идеально. Техника верхних форм — это просто спасение. Жалею только об одном — что не прошла это обучение раньше 😊❤️</p><footer>ученица курса</footer></blockquote>
-      <blockquote class="review"><p>Главный плюс этого курса — обратная связь. Всегда отвечаешь достаточно быстро и по делу, чётко объясняешь, где ошибки и на что обратить внимание. Видно твоё вовлечение. Также круто, что ты скидываешь ссылки на материалы и не нужно тратить кучу времени на их поиски. Также плюсом отмечу видео: на них всё прекрасно слышно и видно, где и куда поставить форму. Особенно видно, какие формы могут подходить или не подходить (что часто не видно у других на видео). В целом всё очень круто 🫶</p><footer>ученица курса</footer></blockquote>
-      <blockquote class="review"><p>Спасибо большое тебе за курс, всё было очень доступно и понятно, а главное, что это всё останется со мной и я в любой момент смогу посмотреть твой урок. Я наконец-то добилась того результата, о котором давно мечтала ✨ Буду тебя советовать и другим мастерам 🤍</p><footer>ученица курса</footer></blockquote>
-      <blockquote class="review"><p>Каролина лучшая!!! Очень-очень вдохновляет на развитие, обратная связь просто топчик: разберёт каждую детальку и укажет на ошибки, о которых раньше я и подумать не могла. Ни секунды не пожалела о покупке курса. Очень много полезной информации получила ❤️</p><footer>ученица курса</footer></blockquote>
-      <blockquote class="review"><p>Курс довольно толковый, очень хорошо всё разъясняешь: как, куда, что. Раньше всегда думала, что онлайн-курсы — фигня, от которой ничему не научишься, а по итогу очень много нового узнаёшь с твоих видеоуроков, учишься новым техникам работы. Впечатления только положительные, с радостью посоветовала бы тебя как мастера по обучению)</p><footer>ученица курса</footer></blockquote>
-      <blockquote class="review"><p>Я лично для себя много нового узнала помимо отпечатки, потому что на все интересующие вопросы ты даёшь развёрнутые ответы. По поводу отпечатки: все мои ошибки были разобраны, и теперь получается супер, ты огонь!! Сначала сомневалась, что что-то получится вообще, но всё просто улёт!!! Я благодарна тебе 🙏❤️</p><footer>ученица курса</footer></blockquote>
+      <button data-full="riga-manicure-update/img/work-cherry-bows.webp"><img src="riga-manicure-update/img/work-cherry-bows-600.webp" alt="Длинный квадрат с вишнями и металлическим декором, работа ученицы" loading="lazy"></button>
+      <button data-full="riga-manicure-update/img/work-burgundy-lace.webp"><img src="riga-manicure-update/img/work-burgundy-lace-600.webp" alt="Бордовый длинный квадрат с кружевом и объёмными бантами, работа ученицы" loading="lazy"></button>
+      <button data-full="riga-manicure-update/img/work-berry-marble.webp"><img src="riga-manicure-update/img/work-berry-marble-600.webp" alt="Миндаль с ягодным мраморным дизайном, работа ученицы" loading="lazy"></button>
+      <button data-full="riga-manicure-update/img/work-white-stars.webp"><img src="riga-manicure-update/img/work-white-stars-600.webp" alt="Нюдовый миндаль с белыми звёздами и стразами, работа ученицы" loading="lazy"></button>
+      <button data-full="riga-manicure-update/img/work-black-white.webp"><img src="riga-manicure-update/img/work-black-white-600.webp" alt="Длинный квадрат в чёрно-белом дизайне, работа ученицы" loading="lazy"></button>
     </div>
   </div>
 </section>
@@ -394,20 +367,20 @@ footer.site a{color:#fff}
 <section class="cta" aria-labelledby="cta-title">
   <div class="wrap">
     <h2 id="cta-title">Хочешь так же?</h2>
-    <p>Напиши Каролине в Instagram. Запись, оплата и все вопросы лично в переписке.</p>
-    <a class="btn btn-main" href="https://ig.me/m/xo.xo_nails_" target="_blank" rel="noopener">Записаться на курс</a>
+    <p>Напиши мне в Telegram. Запись, оплата и все вопросы лично в переписке.</p>
+    <a class="btn btn-main" href="https://t.me/KotyaK00" target="_blank" rel="noopener">Записаться на курс</a>
   </div>
 </section>
 </main>
 
 <footer class="site">
   <div class="wrap">
-    <span>Рига, Саркандаугава ✦ курс онлайн ✦ LV / RU ✦ <a href="https://www.instagram.com/xo.xo_nails_/" target="_blank" rel="noopener">@xo.xo_nails_</a></span>
+    <span>онлайн-курс ✦ <a href="https://www.instagram.com/xo.xo_nails_/" target="_blank" rel="noopener">@xo.xo_nails_</a></span>
     <span>xo.xo nails © 2026</span>
   </div>
 </footer>
 
-<div class="dock"><a class="btn btn-main" href="https://ig.me/m/xo.xo_nails_" target="_blank" rel="noopener">Записаться ♡</a></div>
+<div class="dock"><a class="btn btn-main" href="https://t.me/KotyaK00" target="_blank" rel="noopener">Записаться ♡</a></div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр фото">
   <img alt="">
@@ -449,7 +422,8 @@ footer.site a{color:#fff}
       s.style.left=Math.min(maxX,Math.max(-s.offsetWidth*.3,ox+dx))+'px';
       s.style.top=Math.min(maxY,Math.max(-20,oy+dy))+'px';
     });
-    s.addEventListener('pointerup',e=>{s.releasePointerCapture(e.pointerId)});
+    s.addEventListener('pointerup',e=>{s.releasePointerCapture(e.pointerId);if(!moved&&window.openLB){const all=[...board.querySelectorAll('.sticker')];window.openLB(all.map(x=>({src:x.dataset.full,alt:x.querySelector('img').alt})),all.indexOf(s),s)}});
+    s.tabIndex=0;s.setAttribute('role','button');s.addEventListener('keydown',e=>{if(e.key==='Enter'){const all=[...board.querySelectorAll('.sticker')];window.openLB(all.map(x=>({src:x.dataset.full,alt:x.querySelector('img').alt})),all.indexOf(s),s)}});
   });
 })();
 
@@ -459,6 +433,7 @@ footer.site a{color:#fff}
   let list=[],idx=0,last=null;
   function show(){const it=list[idx];img.src=it.src;img.alt=it.alt;cap.textContent=(idx+1)+' / '+list.length}
   function open(items,i,from){list=items;idx=i;last=from;show();lb.classList.add('open');document.body.style.overflow='hidden';lb.querySelector('.x').focus()}
+  window.openLB=open;
   function close(){lb.classList.remove('open');document.body.style.overflow='';if(last)last.focus()}
   document.querySelectorAll('.gallery').forEach(g=>{
     const btns=[...g.querySelectorAll('button')];
